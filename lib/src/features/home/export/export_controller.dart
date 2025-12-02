@@ -2,10 +2,6 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
-import 'dart:io';
-import 'dart:typed_data';
-import 'dart:ui' as ui;
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -159,16 +155,16 @@ class _ReceiptPainter extends CustomPainter {
       ..color = Colors.pink.shade50.withOpacity(0.1)
       ..style = PaintingStyle.fill;
     
-    final watermarkText = TextPainter(
-      text: const TextSpan(
+    final watermarkText = ui.TextPainter(
+      text: const ui.TextSpan(
         text: 'ARA SHOP',
-        style: TextStyle(
+        style: ui.TextStyle(
           color: Color(0x11F05A7E),
           fontSize: 60,
-          fontWeight: FontWeight.bold,
+          fontWeight: ui.FontWeight.bold,
         ),
       ),
-      textDirection: TextDirection.ltr,
+      textDirection: ui.TextDirection.ltr,
     );
     
     for (var i = 0; i < 3; i++) {
@@ -181,8 +177,8 @@ class _ReceiptPainter extends CustomPainter {
       }
     }
 
-    final textPainter = TextPainter(
-      textDirection: TextDirection.ltr,
+    final textPainter = ui.TextPainter(
+      textDirection: ui.TextDirection.ltr,
     );
 
     void drawText(String text, double x, double y, {
@@ -191,11 +187,11 @@ class _ReceiptPainter extends CustomPainter {
       Color color = Colors.black87,
       TextAlign align = TextAlign.left,
     }) {
-      textPainter.text = TextSpan(
+      textPainter.text = ui.TextSpan(
         text: text,
-        style: TextStyle(
+        style: ui.TextStyle(
           color: color,
-          fontWeight: bold ? FontWeight.bold : FontWeight.normal,
+          fontWeight: bold ? ui.FontWeight.bold : ui.FontWeight.normal,
           fontSize: fontSize,
         ),
       );
@@ -256,11 +252,11 @@ class _ReceiptPainter extends CustomPainter {
       // Nama dan jenis
       drawText(entry.contactName, 40, y, bold: true, fontSize: 13);
       final typeText = entry.flow.name.toUpperCase();
-      textPainter.text = TextSpan(
+      textPainter.text = ui.TextSpan(
         text: typeText,
-        style: TextStyle(
+        style: ui.TextStyle(
           fontSize: 10,
-          fontWeight: FontWeight.bold,
+          fontWeight: ui.FontWeight.bold,
           color: isPinjam ? Colors.red.shade900 : Colors.green.shade900,
         ),
       );

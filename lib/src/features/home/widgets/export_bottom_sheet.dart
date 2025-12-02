@@ -103,7 +103,7 @@ class ExportBottomSheet extends ConsumerWidget {
             ),
             const Divider(),
             ListTile(
-              leading: const Icon(Icons.whatsapp),
+              leading: const Icon(Icons.share),
               title: const Text('Bagikan teks ke WhatsApp'),
               subtitle: const Text('Bagikan ringkasan sebagai teks'),
               onTap: () async {
