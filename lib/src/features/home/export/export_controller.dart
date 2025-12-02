@@ -151,18 +151,10 @@ class _ReceiptPainter extends CustomPainter {
     final bgPaint = Paint()..color = Colors.white;
     canvas.drawRect(Offset.zero & size, bgPaint);
 
-    // Watermark background
-    final watermarkPaint = Paint()
-      ..color = Colors.pink.shade50.withOpacity(0.1)
-      ..style = PaintingStyle.fill;
-    
     // Watermark background - menggunakan cara sederhana tanpa TextPainter
     final watermarkPaint = Paint()
       ..color = Colors.pink.shade50.withOpacity(0.05)
       ..style = PaintingStyle.fill;
-    
-    // Watermark text sederhana dengan drawString jika diperlukan
-    // Untuk sekarang kita skip watermark yang kompleks
 
     final textPainter = TextPainter();
 
