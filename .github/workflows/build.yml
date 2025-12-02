@@ -34,7 +34,7 @@ jobs:
       run: flutter doctor -v
       
     - name: Build APK
-      run: flutter build apk --release
+      run: flutter build apk --release --no-tree-shake-icons
       
     - name: Build App Bundle
       run: flutter build appbundle --release
