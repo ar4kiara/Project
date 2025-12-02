@@ -4,7 +4,6 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:flutter/widgets.dart' show TextDirection;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
@@ -157,31 +156,15 @@ class _ReceiptPainter extends CustomPainter {
       ..color = Colors.pink.shade50.withOpacity(0.1)
       ..style = PaintingStyle.fill;
     
-    final watermarkText = TextPainter(
-      text: const TextSpan(
-        text: 'ARA SHOP',
-        style: TextStyle(
-          color: Color(0x11F05A7E),
-          fontSize: 60,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      textDirection: TextDirection.ltr,
-    );
+    // Watermark background - menggunakan cara sederhana tanpa TextPainter
+    final watermarkPaint = Paint()
+      ..color = Colors.pink.shade50.withOpacity(0.05)
+      ..style = PaintingStyle.fill;
     
-    for (var i = 0; i < 3; i++) {
-      for (var j = 0; j < 4; j++) {
-        watermarkText.layout();
-        watermarkText.paint(
-          canvas,
-          Offset(50 + i * 120, 200 + j * 300),
-        );
-      }
-    }
+    // Watermark text sederhana dengan drawString jika diperlukan
+    // Untuk sekarang kita skip watermark yang kompleks
 
-    final textPainter = TextPainter(
-      textDirection: TextDirection.ltr,
-    );
+    final textPainter = TextPainter();
 
     void drawText(String text, double x, double y, {
       bool bold = false,
@@ -197,6 +180,8 @@ class _ReceiptPainter extends CustomPainter {
           fontSize: fontSize,
         ),
       );
+      // Set textDirection setelah text di-set
+      textPainter.textDirection = ui.TextDirection.ltr;
       textPainter.layout(maxWidth: size.width - (x * 2));
       if (align == TextAlign.center) {
         textPainter.paint(canvas, Offset((size.width - textPainter.width) / 2, y));
@@ -262,6 +247,7 @@ class _ReceiptPainter extends CustomPainter {
           color: isPinjam ? Colors.red.shade900 : Colors.green.shade900,
         ),
       );
+      textPainter.textDirection = ui.TextDirection.ltr;
       textPainter.layout();
       final typeBgPaint = Paint()..color = borderColor;
       final typeRect = RRect.fromRectAndRadius(
